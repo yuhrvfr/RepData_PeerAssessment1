@@ -220,21 +220,7 @@ opts_chunk$set(echo=TRUE,cache=TRUE)
 <h3>1) Make a histogram of the total number of steps take each day</h3>
 
 <pre><code class="r">library(dplyr)
-</code></pre>
-
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;
-## 
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-</code></pre>
-
-<pre><code class="r">library(ggplot2)
+library(ggplot2)
 pa1sumbd &lt;- group_by(pa11,date) %&gt;% summarize(sum(steps))
 names(pa1sumbd)[2] &lt;- &#39;total_steps&#39;
 g &lt;- ggplot(pa1sumbd,aes(x=date ,y=total_steps))
@@ -332,19 +318,14 @@ fmd &lt;- format(round(median(pa1mgsumbd$total_steps),2),nsall=2)
 x &lt;- data.frame(Case=c(&quot;Without_NAs&quot;,&quot;Replaced_NAs_with_mean&quot;),
                 Mean=c(mnd,fmn),
                 Median=c(med,fmd))
-xt &lt;- xtable(x)
+xt &lt;- x
 print(xt,type=&quot;html&quot;)
 </code></pre>
 
-<!-- html table generated in R 3.1.1 by xtable 1.7-4 package -->
-
-<!-- Tue Nov 11 22:31:37 2014 -->
-
-<table border=1>
-<tr> <th>  </th> <th> Case </th> <th> Mean </th> <th> Median </th>  </tr>
-  <tr> <td align="right"> 1 </td> <td> Without_NAs </td> <td> 10766.19 </td> <td> 10765 </td> </tr>
-  <tr> <td align="right"> 2 </td> <td> Replaced_NAs_with_mean </td> <td> 10766.19 </td> <td> 10766.19 </td> </tr>
-   </table>
+<pre><code>##                     Case     Mean   Median
+## 1            Without_NAs 10766.19    10765
+## 2 Replaced_NAs_with_mean 10766.19 10766.19
+</code></pre>
 
 <ol>
 <li>Missing values replaced by the mean number of steps per day and without the missing values, the computed mean value of steps per day is unchanged. </li>

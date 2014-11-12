@@ -1,16 +1,12 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
-html_document: PA1_template.html
+html_document:
 keep_md: true
 ---
 
-```{r echo=TRUE}
-# Set Global options to display the code
-opts_chunk$set(echo=TRUE,cache=TRUE)
-```
 
-## Loading and preprocessing the data
+### Loading and preprocessing the data
 ```{r}
 pa1 <- read.csv("activity.csv")
 ```
@@ -47,8 +43,8 @@ print(plot1)
 mnd <- format(round(mean(pa1sumbd$total_steps),2),nsall=2)
 med <- format(round(median(pa1sumbd$total_steps),2),nsall=2)
 ```
-- The mean total number of steps taken per day is **`r mnd`**.
-- The median total number of steps taken per day is **`r med`**.
+The mean total number of steps taken per day is `r mnd`.
+The median total number of steps taken per day is `r med`.
 
 
 
@@ -75,7 +71,7 @@ with(pa1avebi,plot(interval,average_steps, type="l",
 msteps <- pa1avebi[(pa1avebi$average_steps == max(pa1avebi$average_steps)),1]
 ```
 
-The interval with the maximum average number of steps across all days is **`r msteps`**.
+The interval with the maximum average number of steps across all days is `r msteps`.
 
 
 ## Imputing missing values
@@ -86,7 +82,7 @@ The interval with the maximum average number of steps across all days is **`r ms
 nb <- nrow(pa1[(is.na(pa1$steps)),])
 ```
 
-The number of rows in the dataset missing values in the steps variable is **`r nb`**.
+The number of rows in the dataset missing values in the steps variable is `r nb`.
 
 
 ### 2) Replace missing values with the mean values of the same intervals across all dates
@@ -120,24 +116,21 @@ fmn <- format(round(mean(pa1mgsumbd$total_steps),2),nsall=2)
 fmd <- format(round(median(pa1mgsumbd$total_steps),2),nsall=2)
 ```
 
-- The mean total number of steps taken per day is **`r fmn`**.
-- The median total number of steps taken per day is **`r fmd`**.
+The mean total number of steps taken per day is `r fmn`.
+The median total number of steps taken per day is `r fmd`.
 
+Compare the mean and median values in the 2 cases: Without the NAs and with the NAs replaced by the average values.
 
-
-**Compare the mean and median values in the 2 cases: Without the NAs and with the NAs replaced by the average values.**
-
-```{r results='asis'}
+```{r}
 library(xtable)
-x <- data.frame(Case=c("Without_NAs","Replaced_NAs_with_mean"),
-                Mean=c(mnd,fmn),
-                Median=c(med,fmd))
-xt <- xtable(x)
+x <- data.frame(case=c("Without_na","na_replaced_by_mean"),
+                mean=c(mnd,fmn),
+                median=c(med,fmd))
+xt <- x
 print(xt,type="html")
 ```
 
-1. Missing values replaced by the mean number of steps per day and without the missing values, the computed mean value of steps per day is unchanged. 
-2. The median value is synchronized with the mean value in the case the missing values are replaced by the mean value.
+With the missing values replaced by the mean number of steps per day, the mean value is unchanged in both cases. The median value is synchronized with the mean value in the case the missing values are replaced by the mean value.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -210,4 +203,4 @@ xyplot(pa1mgmn$average_steps~pa1mgmn$interval | pa1mgmn$wdwe,
       )
 ```
 
-Weekend actity is more spread across all intervals, there are more activities in the afternoon. The weekday has pick of activitis around the interval 835. By adding the linear regression line, the weekend activity level is slidly higher than weekday.
+Weekend actity is more spread across all intervals, there are more activities in the afternoon. The weekday has pick of activitis around the interval 830. By adding the linear regression line, the weekend activity level is slidly higher than weekday.
