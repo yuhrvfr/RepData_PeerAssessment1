@@ -80,9 +80,9 @@ OS Windows 7
 5. Verify you have all the required libraries above installed, if not please run install.packages(<package_name>) and follow the instructions online.
 6. In R Console run:
 
-  > setwd("your local directory")
-  > library(knitr)
-  > knit2html("PA1_template.Rmd","PA1_template.html")
+> setwd("your local directory")
+> library(knitr)
+> knit2html("PA1_template.Rmd","PA1_template.html")
 
 7. The file PA1_template.html will be generated under your local directory
 
