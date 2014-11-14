@@ -210,4 +210,4 @@ xyplot(pa1mgmn$average_steps~pa1mgmn$interval | pa1mgmn$wdwe,
       )
 ```
 
-Weekend actity is more spread across all intervals, there are more activities in the afternoon. The weekday has pick of activitis around the interval 835. By adding the linear regression line, the weekend activity level is slidly higher than weekday.
+Weekend actity is more spread across all intervals, there are more activities in the afternoon in comparison to the weekdays. The weekday has pick of activities around the interval 835. By adding the linear regression line, we can see the weekend activity level is slidly higher than weekday.
